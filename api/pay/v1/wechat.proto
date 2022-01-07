@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package api.pay.v1;
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+option go_package = "kratos-mall/api/pay/v1;v1";
+
+service Wechat {
+  rpc H5 (H5Request) returns (H5Response) {
+    option (google.api.http) = {
+      get: "/pay/v1/wechat/h5"
+    };
+  };
+}
+
+message H5Request {
+  string name = 1 [(validate.rules).int32 = {gt:0}];;
+}
+message H5Response {
+  string message = 1;
+}
